@@ -127,10 +127,58 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BlockingQueue.h" />
+    <ClInclude Include="CreateDogHandlerFunc.h" />
+    <ClInclude Include="Dog.h" />
+    <ClInclude Include="FileReader.h" />
+    <ClInclude Include="HtmlFileReader.h" />
+    <ClInclude Include="HttpParser.h" />
     <ClInclude Include="HttpServer.h" />
+    <ClInclude Include="HttpSocket.h" />
+    <ClInclude Include="HttpStatus.h" />
+    <ClInclude Include="JsonObject.h" />
+    <ClInclude Include="JsonParser.h" />
+    <ClInclude Include="JsonType.h" />
+    <ClInclude Include="JsonValue.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="sqlite3.h" />
+    <ClInclude Include="sqlite3ext.h" />
+    <ClInclude Include="TcpServer.h" />
+    <ClInclude Include="ThreadPool.h" />
+    <ClInclude Include="ThreadSafeQueue.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BlockingQueue.cpp" />
+    <ClCompile Include="CreateDogHandlerFunc.cpp" />
+    <ClCompile Include="Dog.cpp" />
+    <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="HtmlFileReader.cpp" />
+    <ClCompile Include="HttpParser.cpp" />
     <ClCompile Include="HttpServer.cpp" />
+    <ClCompile Include="HttpSocket.cpp" />
+    <ClCompile Include="JsonObject.cpp" />
+    <ClCompile Include="JsonParser.cpp" />
+    <ClCompile Include="JsonType.cpp" />
+    <ClCompile Include="JsonValue.cpp" />
+    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="shell.c" />
+    <ClCompile Include="sqlite3.c" />
+    <ClCompile Include="TcpServer.cpp" />
+    <ClCompile Include="ThreadPool.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="add_dog.html" />
+    <None Include="add_dog.js" />
+    <None Include="dog_details.html" />
+    <None Include="Error400.html" />
+    <None Include="Error404.html" />
+    <None Include="home_page.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="main.js" />
+    <None Include="script.js" />
+    <None Include="style.css" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
