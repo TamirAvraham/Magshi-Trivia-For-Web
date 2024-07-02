@@ -102,6 +102,9 @@
     <ClInclude Include="Dog.h">
       <Filter>Header Files\Http Test Class</Filter>
     </ClInclude>
+    <ClInclude Include="IDataBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlockingQueue.cpp">
@@ -156,6 +159,9 @@
       <Filter>Source Files\Http Lib</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IDataBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
