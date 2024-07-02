@@ -13,149 +13,179 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Web Files">
+      <UniqueIdentifier>{320d5658-0e5c-418f-90c5-79633a92aea0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Http Lib">
+      <UniqueIdentifier>{794dd551-8c67-491d-ac8d-1f0516177722}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Sqlite">
+      <UniqueIdentifier>{7c629c14-8e65-4e54-b6d8-ab3f91ce4ddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Http Test Class">
+      <UniqueIdentifier>{28cb4e9c-1bfe-4519-93c9-dfcb296e982c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Web Files\HTML">
+      <UniqueIdentifier>{274e18a8-46b4-456e-bca6-3539f135a55d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Web Files\Js">
+      <UniqueIdentifier>{6824543e-4902-4822-b55b-94a30096192f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Web Files\Css">
+      <UniqueIdentifier>{1b1dc772-b7a2-48a3-82bb-0af633e553f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Http Lib">
+      <UniqueIdentifier>{b57be623-28d8-4739-9ad2-1ba5c17268cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Http Test Class">
+      <UniqueIdentifier>{57466ccb-586d-4411-a178-4fa1e9b6585b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sqlite">
+      <UniqueIdentifier>{d90ca81e-9010-4c1e-b861-775f0936b1db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HttpServer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BlockingQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CreateDogHandlerFunc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Dog.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Http Lib</Filter>
     </ClInclude>
     <ClInclude Include="FileReader.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Http Lib</Filter>
     </ClInclude>
     <ClInclude Include="HtmlFileReader.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Http Lib</Filter>
     </ClInclude>
     <ClInclude Include="HttpParser.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Http Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpServer.h">
+      <Filter>Header Files\Http Lib</Filter>
     </ClInclude>
     <ClInclude Include="HttpSocket.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Http Lib</Filter>
     </ClInclude>
     <ClInclude Include="HttpStatus.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Http Lib</Filter>
     </ClInclude>
     <ClInclude Include="JsonObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Http Lib</Filter>
     </ClInclude>
     <ClInclude Include="JsonParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="JsonType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="JsonValue.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Http Lib</Filter>
     </ClInclude>
     <ClInclude Include="Logger.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Http Lib</Filter>
     </ClInclude>
-    <ClInclude Include="sqlite3.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="JsonValue.h">
+      <Filter>Header Files\Http Lib</Filter>
     </ClInclude>
-    <ClInclude Include="sqlite3ext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TcpServer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ThreadPool.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="JsonType.h">
+      <Filter>Header Files\Http Lib</Filter>
     </ClInclude>
     <ClInclude Include="ThreadSafeQueue.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Http Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadPool.h">
+      <Filter>Header Files\Http Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="TcpServer.h">
+      <Filter>Header Files\Http Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite3.h">
+      <Filter>Header Files\Sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite3ext.h">
+      <Filter>Header Files\Sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateDogHandlerFunc.h">
+      <Filter>Header Files\Http Test Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Dog.h">
+      <Filter>Header Files\Http Test Class</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HttpServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="shell.c">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sqlite3.c">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="JsonObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ThreadPool.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TcpServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Logger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="JsonValue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="JsonType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="JsonParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HttpSocket.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HttpParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HtmlFileReader.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="BlockingQueue.cpp">
+      <Filter>Source Files\Http Lib</Filter>
     </ClCompile>
     <ClCompile Include="CreateDogHandlerFunc.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Http Test Class</Filter>
     </ClCompile>
     <ClCompile Include="Dog.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Http Test Class</Filter>
     </ClCompile>
     <ClCompile Include="FileReader.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Http Lib</Filter>
     </ClCompile>
-    <ClCompile Include="BlockingQueue.cpp">
+    <ClCompile Include="HtmlFileReader.cpp">
+      <Filter>Source Files\Http Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpParser.cpp">
+      <Filter>Source Files\Http Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpServer.cpp">
+      <Filter>Source Files\Http Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="shell.c">
+      <Filter>Source Files\Sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite3.c">
+      <Filter>Source Files\Sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadPool.cpp">
+      <Filter>Source Files\Http Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="TcpServer.cpp">
+      <Filter>Source Files\Http Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Source Files\Http Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonValue.cpp">
+      <Filter>Source Files\Http Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonType.cpp">
+      <Filter>Source Files\Http Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonParser.cpp">
+      <Filter>Source Files\Http Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonObject.cpp">
+      <Filter>Source Files\Http Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpSocket.cpp">
+      <Filter>Source Files\Http Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="add_dog.html">
-      <Filter>Header Files</Filter>
+      <Filter>Web Files\HTML</Filter>
     </None>
     <None Include="dog_details.html">
-      <Filter>Header Files</Filter>
+      <Filter>Web Files\HTML</Filter>
     </None>
     <None Include="Error400.html">
-      <Filter>Header Files</Filter>
+      <Filter>Web Files\HTML</Filter>
     </None>
     <None Include="Error404.html">
-      <Filter>Header Files</Filter>
+      <Filter>Web Files\HTML</Filter>
     </None>
     <None Include="home_page.htm">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="style.css">
-      <Filter>Header Files</Filter>
+      <Filter>Web Files\HTML</Filter>
     </None>
     <None Include="add_dog.js">
-      <Filter>Header Files</Filter>
+      <Filter>Web Files\Js</Filter>
     </None>
     <None Include="main.js">
-      <Filter>Header Files</Filter>
+      <Filter>Web Files\Js</Filter>
     </None>
     <None Include="script.js">
-      <Filter>Header Files</Filter>
+      <Filter>Web Files\Js</Filter>
+    </None>
+    <None Include="style.css">
+      <Filter>Web Files\Css</Filter>
     </None>
   </ItemGroup>
 </Project>
