@@ -7,7 +7,7 @@
 #include "Dog.h"
 #include "CreateDogHandlerFunc.h"
 #include <iostream>
-
+#include "UserRoutes.h"
 /*
 TODO:
 db:
@@ -31,22 +31,31 @@ int main() {
 	http::HttpRoute getDogRoute({ "/api/get_dog/:id" }, { getDogHandlerFunc });
 	http::HttpRoute getAllDogsRoute({ "/api/get_all_dogs" }, { getAllDogsHandlerFunc });
 	http::HttpRoute adpotDogRoute({ "/api/adopt_dog/:id" }, { adoptDog });
+	http::HttpRoute userPageRoute({ "/api/login" }, { loginRoute });
+
 	http::HtmlFileReader homePageReader("home_page.htm");
 	http::HtmlFileReader addDogReader("add_dog.html");
 	http::HtmlFileReader dogDeatsReader("dog_details.html");
-	
+	http::HtmlFileReader loginPageReader("user_form.html");
+
+	loginPageReader.optimizeFileForSending();
 	homePageReader.optimizeFileForSending();
 	addDogReader.optimizeFileForSending();
 	dogDeatsReader.optimizeFileForSending();
 
 	http::HttpServer server(8080,"127.0.0.1");
+
 	server.HandleRoute(http::HttpPOST, createDogRoute);
 	server.HandleRoute(http::HttpGET, getDogRoute);
 	server.HandleRoute(http::HttpGET, getAllDogsRoute);
 	server.HandleRoute(http::HttpDELETE, adpotDogRoute);
+	server.HandleRoute(http::HttpPOST, userPageRoute);
+
 	server.ServeHtmlPage("/", homePageReader);
 	server.ServeHtmlPage("/dog_details/:id", dogDeatsReader);
 	server.ServeHtmlPage("/add_dog", addDogReader);
+	server.ServeHtmlPage("/login", loginPageReader);
+
 	server.serve();
 
 

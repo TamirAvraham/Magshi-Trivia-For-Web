@@ -58,6 +58,18 @@ void http::json::JsonObject::insert(JsonKeyValuePair keyValuePair)
 	_changed = true;
 }
 
+void http::json::JsonObject::insert(std::string&& key, std::string&& jsonValueAsString)
+{
+	std::string jsonValue = jsonValueAsString;
+	return insert({ {key},{jsonValue} });
+}
+
+void http::json::JsonObject::insert(std::string&& key, int numberValue)
+{
+	auto numberValueAsString = std::to_string(numberValue);
+	return insert({ {key }, {numberValueAsString }});
+}
+
 void http::json::JsonObject::set(const std::string& keyName, http::json::JsonValue val) noexcept
 {
 	_jsonMap[keyName] = val;

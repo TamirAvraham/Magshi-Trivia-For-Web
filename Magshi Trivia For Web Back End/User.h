@@ -15,6 +15,14 @@ public:
 	{
 		return _username == other._username && _id == other._id;
 	}
-	bool operator<(const User& other) const;
+	bool operator<(const User& other) const {
+		return _username < other._username;
+	}
+	int getId()const {
+		return _id;
+	}
+	const std::string& getUsername() const {
+		return _username;
+	}
 };
 
