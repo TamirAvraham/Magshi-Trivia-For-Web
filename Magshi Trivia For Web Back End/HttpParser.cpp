@@ -1,7 +1,7 @@
 #include "HttpParser.h"
 #include <regex>
 
-http::HttpTokenizer::HttpTokenizer(std::string request)
+http::HttpTokenizer::HttpTokenizer(std::string& request)
 {
 	_error = HttpStatus::OK;
 	parse(request);
@@ -15,6 +15,11 @@ std::string http::HttpTokenizer::GetBody()
 std::string http::HttpTokenizer::GetRoute()
 {
 	return _route;
+}
+
+std::unordered_map<std::string, std::string> http::HttpTokenizer::GetCookie()
+{
+	return _cookie;
 }
 
 http::HttpRequestType http::HttpTokenizer::GetType()
@@ -78,10 +83,35 @@ void http::HttpTokenizer::parse(std::string req)
 	{
 		_error = error;
 	}
+	//cookie-parsing
+	auto cookieStart = req.find("Cookie: ");
+	if (cookieStart!=std::string::npos)
+	{
+		auto lineStart = req.find(' ', cookieStart);
+		auto lineEnd = req.find('\r\n', cookieStart);
+		auto ss = req.substr(lineStart, lineEnd-lineStart);
+		std::stringstream cookieAsString{ ss };
+		std::string cookieValue;
+		while (cookieAsString >> cookieValue)
+		{
+			auto seperator = cookieValue.find('=');
+			auto key = cookieValue.substr(0, seperator);
+			std::string value;
+			if (cookieValue.rfind(';')==cookieValue.length()-1)
+			{
+				value = cookieValue.substr(seperator, cookieValue.length() - 1);
+			}
+			else {
+				value = cookieValue.substr(seperator+1);
+			}
+			_cookie.emplace(key, value);
+		}
+	}
+
 	getBody(req);
 }
 
-void http::HttpTokenizer::getBody(std::string req)
+void http::HttpTokenizer::getBody(std::string& req)
 {
 	auto HasContent = req.find("Content-Type");
 

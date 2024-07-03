@@ -10,28 +10,26 @@
 namespace http{
 
 	struct HttpHeaders {
-		std::map<std::string, std::string> headers;
-
-		void AddHeader(const std::string& key, const std::string& value) {
-			headers[key] = value;
-		}
-
-		std::string GetHeaderValue(const std::string& key) const {
+		std::multimap<std::string, std::string> headers;
+	public:
+		std::string GetHeaderValue(const std::string& key) const noexcept {
 			auto header = headers.find(key);
 			if (header != headers.end()) {
 				return header->second;
 			}
 			return "";
 		}
-		inline HttpHeaders(){};
+		HttpHeaders(){};
 	};
 
 	class HttpSocket :public tcp::simpleSocket
 	{
 	public:
 		inline HttpSocket(SOCKET socket) :tcp::simpleSocket(socket){};
-		void bindMsg(const HttpStatus status,const json::JsonObject& json,const HttpHeaders headers= HttpHeaders());
-		void bindMsg(const HttpStatus status,const FileReader& htmlFile,const HttpHeaders headers= HttpHeaders());
+		void bindMsg(const HttpStatus status,const json::JsonObject& json,const std::unordered_map<std::string,std::string>& cookies, HttpHeaders headers);
+		void bindMsg(const HttpStatus status,const FileReader& htmlFile,const std::unordered_map<std::string, std::string>& cookies, HttpHeaders headers);
+		void bindMsg(const HttpStatus status, const json::JsonObject& json, const HttpHeaders headers = HttpHeaders());
+		void bindMsg(const HttpStatus status, const FileReader& htmlFile, const HttpHeaders headers = HttpHeaders());
 		void bindCss(const HttpStatus status, const std::string cssFileName);
 		void bindJs(const HttpStatus status, const std::string jsFileName);
 

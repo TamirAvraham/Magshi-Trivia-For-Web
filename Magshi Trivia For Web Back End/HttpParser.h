@@ -21,9 +21,10 @@ namespace http {
 	class HttpTokenizer
 	{
 	public:
-		HttpTokenizer(std::string request);
+		HttpTokenizer(std::string& request);
 		std::string GetBody();
 		std::string GetRoute();
+		std::unordered_map<std::string,std::string> GetCookie();
 		HttpRequestType GetType();
 		HttpStatus GetError();
 		std::pair<bool, std::string> isCss();
@@ -32,13 +33,14 @@ namespace http {
 		std::string _header;
 		std::string _body;
 		std::string _route;
+		std::unordered_map<std::string, std::string> _cookie;
 		std::pair<bool, std::string> _isCssAndFileName;
 		std::pair<bool, std::string> _isJsAndFileName;
 		HttpRequestType _requestType;
 		HttpStatus _error;
 
 		void parse(std::string req);
-		void getBody(std::string req);
+		void getBody(std::string& req);
 		HttpRequestType StringToHttpRequestType(std::string requestType);
 	};
 };
