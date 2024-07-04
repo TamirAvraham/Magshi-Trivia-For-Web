@@ -167,7 +167,7 @@ void http::HttpServer::ConnHandler(SOCKET sock)
     }
 
 }
-http::HttpServer::HttpServer(int port, std::string ip):tcp::TcpServer(port,ip),_threadPool(50)
+http::HttpServer::HttpServer(int port, std::string ip):tcp::TcpServer(port,ip),_threadPool(6)
 {
 }
 void http::HttpServer::HandleRoute(http::HttpRequestType type, HttpRoute route)

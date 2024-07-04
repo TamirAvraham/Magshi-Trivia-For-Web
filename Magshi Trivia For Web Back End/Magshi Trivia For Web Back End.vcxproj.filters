@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Sqlite">
       <UniqueIdentifier>{d90ca81e-9010-4c1e-b861-775f0936b1db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\User">
+      <UniqueIdentifier>{2109474f-9855-47d3-82a8-2c8109595ef4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\User">
+      <UniqueIdentifier>{230e2a7b-1b5b-443d-85de-99e532f02efb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlockingQueue.h">
@@ -105,6 +111,15 @@
     <ClInclude Include="IDataBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Header Files\User</Filter>
+    </ClInclude>
+    <ClInclude Include="UserManager.h">
+      <Filter>Header Files\User</Filter>
+    </ClInclude>
+    <ClInclude Include="UserRoutes.h">
+      <Filter>Header Files\User</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlockingQueue.cpp">
@@ -164,6 +179,15 @@
     <ClCompile Include="IDataBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UserRoutes.cpp">
+      <Filter>Source Files\User</Filter>
+    </ClCompile>
+    <ClCompile Include="UserManager.cpp">
+      <Filter>Source Files\User</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Source Files\User</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="add_dog.html">
@@ -193,5 +217,8 @@
     <None Include="style.css">
       <Filter>Web Files\Css</Filter>
     </None>
+    <None Include="user_form.html" />
+    <None Include="user_form_css.css" />
+    <None Include="user_form_logic.js" />
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
 #include <stdexcept>
 const User& UserManager::login(const std::string & username)
 {
-    auto id = ++_id;
+    auto id = _id++;
     _users.emplace(id,User(username, id));
     return this->getUserById(id);
 }
