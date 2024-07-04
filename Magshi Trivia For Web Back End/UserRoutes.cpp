@@ -44,7 +44,7 @@ void loginRoute(http::HttpContext& ctx)
 		ctx.addCookie("user-id", idAsString);
 		ctx.sendJson(http::HttpStatus::OK, responce);
 	}
-	catch (const std::exception&)
+	catch (const std::exception& e)
 	{
 		auto json = http::json::JsonObject::JsonObject();
 		json.insert("error", e.what());
