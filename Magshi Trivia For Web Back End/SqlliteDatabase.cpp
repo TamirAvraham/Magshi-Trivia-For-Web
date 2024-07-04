@@ -1,7 +1,9 @@
 #include "SqlliteDatabase.h"
 #include "UserException.h"
 #include "sqlite3.h"
+#include "UserManager.h"
 #include <iostream>
+
 
 SqlliteDatabase::SqlliteDatabase()
 {
@@ -40,7 +42,7 @@ User SqlliteDatabase::login(const std::string& username, const std::string& pass
     if (rc) {
         throw UserException(sqlite3_errmsg(_db));
     }
-    return User(sql, 2);
+    return UserManager::getInstance().login(username);
 }
 
 User SqlliteDatabase::signup(const std::string& username, const std::string& password, const std::string& email)
@@ -64,7 +66,7 @@ User SqlliteDatabase::signup(const std::string& username, const std::string& pas
     }
 
     sqlite3_finalize(stmt);
-    return User(sql, 2);
+    return UserManager::getInstance().login(username);
 }
 
 SqlliteDatabase::~SqlliteDatabase()

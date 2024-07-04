@@ -49,6 +49,12 @@
     <Filter Include="Source Files\User">
       <UniqueIdentifier>{230e2a7b-1b5b-443d-85de-99e532f02efb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Database">
+      <UniqueIdentifier>{7a084b86-0935-4aa1-b866-e20ffa1a27a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Database">
+      <UniqueIdentifier>{d65bc331-f2cf-447c-9dbe-820c1e5d97fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlockingQueue.h">
@@ -108,9 +114,6 @@
     <ClInclude Include="Dog.h">
       <Filter>Header Files\Http Test Class</Filter>
     </ClInclude>
-    <ClInclude Include="IDataBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="User.h">
       <Filter>Header Files\User</Filter>
     </ClInclude>
@@ -120,12 +123,14 @@
     <ClInclude Include="UserRoutes.h">
       <Filter>Header Files\User</Filter>
     </ClInclude>
-    
-    <ClInclude Include="SqlliteDatabase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UserException.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\User</Filter>
+    </ClInclude>
+    <ClInclude Include="IDataBase.h">
+      <Filter>Header Files\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="SqlliteDatabase.h">
+      <Filter>Header Files\Database</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -183,8 +188,23 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UserRoutes.cpp">
+      <Filter>Source Files\User</Filter>
+    </ClCompile>
+    <ClCompile Include="UserManager.cpp">
+      <Filter>Source Files\User</Filter>
+    </ClCompile>
+    <ClCompile Include="UserExeption.cpp">
+      <Filter>Source Files\User</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Source Files\User</Filter>
+    </ClCompile>
     <ClCompile Include="IDataBase.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="SqlliteDatabase.cpp">
+      <Filter>Source Files\Database</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -215,8 +235,14 @@
     <None Include="style.css">
       <Filter>Web Files\Css</Filter>
     </None>
-    <None Include="user_form.html" />
-    <None Include="user_form_css.css" />
-    <None Include="user_form_logic.js" />
+    <None Include="user_form.html">
+      <Filter>Web Files\HTML</Filter>
+    </None>
+    <None Include="user_form_css.css">
+      <Filter>Web Files\Css</Filter>
+    </None>
+    <None Include="user_form_logic.js">
+      <Filter>Web Files\Js</Filter>
+    </None>
   </ItemGroup>
 </Project>
