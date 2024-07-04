@@ -152,6 +152,7 @@
     <ClInclude Include="User.h" />
     <ClInclude Include="UserException.h" />
     <ClInclude Include="UserManager.h" />
+    <ClInclude Include="UserRoutes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlockingQueue.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserExeption.cpp" />
     <ClCompile Include="UserManager.cpp" />
+    <ClCompile Include="UserRoutes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="add_dog.html" />
@@ -190,6 +192,9 @@
     <None Include="main.js" />
     <None Include="script.js" />
     <None Include="style.css" />
+    <None Include="user_form.html" />
+    <None Include="user_form_css.css" />
+    <None Include="user_form_logic.js" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

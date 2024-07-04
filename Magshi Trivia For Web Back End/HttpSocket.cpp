@@ -1,6 +1,24 @@
 #include "HttpSocket.h"
 #include <string>
-void http::HttpSocket::bindMsg(const HttpStatus status, const json::JsonObject& json, const HttpHeaders headers) 
+void http::HttpSocket::bindMsg(const HttpStatus status, const json::JsonObject& json, const std::unordered_map<std::string, std::string>& cookies, HttpHeaders headers = HttpHeaders())
+{
+    for (const auto& cookie:cookies)
+    {
+        std::string connectedKVPair = cookie.first + std::string("=") + cookie.second;
+        headers.headers.insert(std::make_pair("Set-Cookie", connectedKVPair));
+    }
+    bindMsg(status, json, headers);
+}
+void http::HttpSocket::bindMsg(const HttpStatus status, const FileReader& htmlFile, const std::unordered_map<std::string, std::string>& cookies, HttpHeaders headers = HttpHeaders())
+{
+    for (const auto& cookie : cookies)
+    {
+        std::string connectedKVPair = cookie.first + std::string("=") + cookie.second;
+        headers.headers.insert(std::make_pair("Set-Cookie", connectedKVPair));
+    }
+    bindMsg(status, htmlFile, headers);
+}
+void http::HttpSocket::bindMsg(const HttpStatus status, const json::JsonObject& json, const HttpHeaders headers)
 {
     std::string msg = generateHttpResponceFromRequst(status, json, headers);
     write(msg);

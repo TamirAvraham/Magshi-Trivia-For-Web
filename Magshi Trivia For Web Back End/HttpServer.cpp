@@ -167,7 +167,7 @@ void http::HttpServer::ConnHandler(SOCKET sock)
     }
 
 }
-http::HttpServer::HttpServer(int port, std::string ip):tcp::TcpServer(port,ip),_threadPool(50)
+http::HttpServer::HttpServer(int port, std::string ip):tcp::TcpServer(port,ip),_threadPool(6)
 {
 }
 void http::HttpServer::HandleRoute(http::HttpRequestType type, HttpRoute route)
@@ -211,7 +211,7 @@ std::pair<http::HttpServer::HttpContext,std::function<void(http::HttpServer::Htt
         throw HttpStatus::OK;
     }
     auto [routeParams, handler] = matchRoute(reqAsHttpToken.GetRoute(), reqAsHttpToken.GetType());
-    http::HttpServer::HttpContext con(reqAsHttpToken.GetBody(), routeParams, sock);
+    http::HttpServer::HttpContext con(reqAsHttpToken.GetBody(), routeParams, sock,reqAsHttpToken.GetCookie());
     return {con, handler};
 }
 //
@@ -220,7 +220,7 @@ std::pair<http::HttpServer::HttpContext,std::function<void(http::HttpServer::Htt
 //    return GetParams(route,parttern);
 //}
 
-http::HttpServer::HttpContext::HttpContext(std::string body, std::vector<HttpRouteParam> params, SOCKET sock):_body(body),_params(params),_sock(sock)
+http::HttpServer::HttpContext::HttpContext(std::string body, std::vector<HttpRouteParam> params, SOCKET sock, std::unordered_map<std::string, std::string> cookies) :_body(body),_params(params),_sock(sock),_cookies(cookies),_newCookies()
 {
 }
 
@@ -235,7 +235,7 @@ std::string http::HttpServer::HttpContext::GetParam(std::string paramName) const
     throw std::invalid_argument("param name was not found");
 }
 
-std::string http::HttpServer::HttpContext::GetBody() const noexcept
+const std::string& http::HttpServer::HttpContext::GetBody() const noexcept
 {
     return _body;
 }
@@ -247,15 +247,26 @@ http::json::JsonObject http::HttpServer::HttpContext::GetBodyAsJson() const noex
 
 void http::HttpServer::HttpContext::sendJson(http::HttpStatus status, http::json::JsonObject& jsonObject, http::HttpHeaders headers) noexcept
 {
-    _sock.bindMsg(status, jsonObject, headers);
+    _sock.bindMsg(status, jsonObject, _newCookies, headers);
 }
 
 
 
 void http::HttpServer::HttpContext::sendHtml(http::HttpStatus status, http::FileReader& htmlfile, http::HttpHeaders headers) noexcept
 {
-    _sock.bindMsg(status, htmlfile, headers);
+    _sock.bindMsg(status, htmlfile,_newCookies, headers);
 }
+
+void http::HttpServer::HttpContext::addCookie(std::string&& cookieValue, std::string&& key) noexcept
+{
+    _newCookies.emplace(key, cookieValue);
+}
+
+void http::HttpServer::HttpContext::addCookie(std::string&& key, const std::string& cookieValue) noexcept
+{
+    _newCookies.emplace(key, cookieValue);
+}
+
 
 http::HttpRoute::HttpRoute(std::string routeTemplate, std::function<void(HttpServer::HttpContext&)> handler):_route(routeTemplate),_handler(handler)
 {

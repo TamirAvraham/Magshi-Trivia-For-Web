@@ -11,6 +11,7 @@
 #include "TcpServer.h"
 #include "ThreadPool.h"
 #include "HttpSocket.h"
+#include "sqlite3.h"
 
 namespace http {
 	struct HttpRouteParam
@@ -38,14 +39,18 @@ namespace http {
 		class HttpContext {
 
 		public:
-			HttpContext(std::string body, std::vector<HttpRouteParam> params, SOCKET sock);
+			HttpContext(std::string body, std::vector<HttpRouteParam> params, SOCKET sock,std::unordered_map<std::string,std::string> cookies);
 			std::string GetParam(std::string paramName)const;
 
-			std::string GetBody()const noexcept;
+			const std::string& GetBody()const noexcept;
 			json::JsonObject GetBodyAsJson()const noexcept;
 			
 			void sendJson(http::HttpStatus status, http::json::JsonObject& jsonObject, http::HttpHeaders headers=http::HttpHeaders()) noexcept;
+			
 			void sendHtml(http::HttpStatus status, http::FileReader& htmlfile, http::HttpHeaders headers=http::HttpHeaders()) noexcept;
+			void addCookie(std::string&& cookieValue, std::string&& key) noexcept;
+			void addCookie(std::string&& key,const std::string& cookieValue) noexcept;
+			
 			// alloc aysnc task
 
 			/// <summary>
@@ -60,6 +65,8 @@ namespace http {
 		private:
 			std::string _body;
 			std::vector<HttpRouteParam> _params;
+			std::unordered_map<std::string, std::string> _cookies;
+			std::unordered_map<std::string, std::string> _newCookies;
 			http::HttpSocket _sock;
 		};
 
