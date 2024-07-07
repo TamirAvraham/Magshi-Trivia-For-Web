@@ -27,7 +27,7 @@ std::string http::HttpSocket::generateHttpResponceFromRequst(HttpStatus status, 
 {
     std::string ret = "HTTP/1.1 ",jsonAsString= json.ToString();
     ret += GetStatusLine(status);
-    for(auto [headerName ,headerValue] : headers.headers)
+    for(const auto& [headerName ,headerValue] : headers.headers)
     {
         ret += '\n';
         ret += headerName;
@@ -76,6 +76,22 @@ void http::HttpSocket::bindJs(const HttpStatus status, const std::string jsFileN
     ret += std::to_string(length);
     ret += "\n\n";
     ret += htmlFile.getFileAsString();
+    write(ret);
+}
+void http::HttpSocket::bindMsg(const HttpStatus status, const HttpHeaders& headers = HttpHeaders())
+{
+    std::string ret = "HTTP/1.1 ";
+    ret += GetStatusLine(status);
+    ret += "\r\n";
+    for (const auto& [headerName, headerValue] : headers.headers)
+    {
+        ret += headerName;
+        ret += ": ";
+        ret += headerValue;
+        ret += "\r\n";
+
+    }
+    ret+="\r\n";
     write(ret);
 }
 std::string http::HttpSocket::generateHttpResponceFromRequst(HttpStatus status, FileReader htmlFile, const HttpHeaders headers) const

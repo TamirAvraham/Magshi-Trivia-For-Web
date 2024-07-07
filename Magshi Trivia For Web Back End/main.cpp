@@ -31,7 +31,8 @@ int main() {
 	http::HttpRoute getDogRoute({ "/api/get_dog/:id" }, { getDogHandlerFunc });
 	http::HttpRoute getAllDogsRoute({ "/api/get_all_dogs" }, { getAllDogsHandlerFunc });
 	http::HttpRoute adpotDogRoute({ "/api/adopt_dog/:id" }, { adoptDog });
-	http::HttpRoute userPageRoute({ "/api/login" }, { loginRoute });
+	http::HttpRoute loginHttpRoute({ "/api/login" }, { loginRoute });
+	http::HttpRoute signupHttpRoute({ "/api/signup" }, { signupRoute });
 
 	http::HtmlFileReader homePageReader("home_page.htm");
 	http::HtmlFileReader addDogReader("add_dog.html");
@@ -49,13 +50,14 @@ int main() {
 	server.HandleRoute(http::HttpGET, getDogRoute);
 	server.HandleRoute(http::HttpGET, getAllDogsRoute);
 	server.HandleRoute(http::HttpDELETE, adpotDogRoute);
-	server.HandleRoute(http::HttpPOST, userPageRoute);
+	server.HandleRoute(http::HttpPOST, loginHttpRoute);
+	server.HandleRoute(http::HttpPOST, signupHttpRoute);
 
 	server.ServeHtmlPage("/", homePageReader);
 	server.ServeHtmlPage("/dog_details/:id", dogDeatsReader);
 	server.ServeHtmlPage("/add_dog", addDogReader);
 	server.ServeHtmlPage("/login", loginPageReader);
-
+	server.enableCORSMiddleware();
 	server.serve();
 
 

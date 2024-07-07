@@ -78,7 +78,11 @@ std::pair<bool, std::vector<http::HttpRouteParam>> http::HttpServer::getParamsFr
 }
 std::pair<std::vector<http::HttpRouteParam>, std::function<void(http::HttpServer::HttpContext&)>> http::HttpServer::matchRoute(std::string gotRoute,http::HttpRequestType reqType)
 {
-    for (auto route:_routes.at(reqType))
+    if (_corsEnabled && reqType == HttpOPTIONS)
+    {
+        return std::make_pair(std::vector<http::HttpRouteParam>(), handleCors);
+    }
+    for (const auto& route:_routes.at(reqType))
     {
         auto [is_route, params] = getParamsFromRoute(gotRoute, route._route);
         if (is_route)
@@ -87,6 +91,17 @@ std::pair<std::vector<http::HttpRouteParam>, std::function<void(http::HttpServer
         }
     }
     throw http::HttpStatus::NotFound;
+}
+void http::handleCors(HttpContext& ctx)
+{
+    HttpHeaders headers;
+    headers.headers.insert(std::make_pair("Access-Control-Allow-Origin", "*"));
+    headers.headers.insert(std::make_pair("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"));
+    headers.headers.insert(std::make_pair("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization"));
+    headers.headers.insert(std::make_pair("Access-Control-Allow-Credentials", "true"));
+    headers.headers.insert(std::make_pair("Access-Control-Max-Age", "86400"));  
+
+    ctx.sendEmpty(HttpStatus::OK, headers);
 }
 void http::HttpServer::serve()
 {
@@ -167,7 +182,7 @@ void http::HttpServer::ConnHandler(SOCKET sock)
     }
 
 }
-http::HttpServer::HttpServer(int port, std::string ip):tcp::TcpServer(port,ip),_threadPool(6)
+http::HttpServer::HttpServer(int port, std::string ip):tcp::TcpServer(port,ip),_threadPool(6),_corsEnabled(false)
 {
 }
 void http::HttpServer::HandleRoute(http::HttpRequestType type, HttpRoute route)
@@ -191,6 +206,16 @@ void http::HttpServer::ServeHtmlPage(const std::string&& routeName, HtmlFileRead
         context.sendHtml(HttpStatus::OK,htmlFileReader);
         }
     });
+}
+
+void http::HttpServer::enableCORSMiddleware(const std::vector<std::string>& premissions)
+{
+    _corsEnabled = true;
+}
+
+void http::HttpServer::enableCORSMiddleware()
+{
+    _corsEnabled = true;
 }
 
 std::pair<http::HttpServer::HttpContext,std::function<void(http::HttpServer::HttpContext&)>> http::HttpServer::getContextFromReq(std::string req, SOCKET sock)
@@ -247,7 +272,17 @@ http::json::JsonObject http::HttpServer::HttpContext::GetBodyAsJson() const noex
 
 void http::HttpServer::HttpContext::sendJson(http::HttpStatus status, http::json::JsonObject& jsonObject, http::HttpHeaders headers) noexcept
 {
+    headers.headers.insert(std::make_pair("Access-Control-Allow-Origin", "*"));
+    headers.headers.insert(std::make_pair("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"));
+    headers.headers.insert(std::make_pair("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization"));
+    headers.headers.insert(std::make_pair("Access-Control-Allow-Credentials", "true"));
+    headers.headers.insert(std::make_pair("Access-Control-Max-Age", "86400"));
     _sock.bindMsg(status, jsonObject, _newCookies, headers);
+}
+
+void http::HttpServer::HttpContext::sendEmpty(http::HttpStatus status, const http::HttpHeaders& headres) noexcept
+{
+    _sock.bindMsg(status, headres);
 }
 
 

@@ -32,7 +32,7 @@ namespace http{
 		void bindMsg(const HttpStatus status, const FileReader& htmlFile, const HttpHeaders headers = HttpHeaders());
 		void bindCss(const HttpStatus status, const std::string cssFileName);
 		void bindJs(const HttpStatus status, const std::string jsFileName);
-
+		void bindMsg(const HttpStatus status, const HttpHeaders& headers);
 
 	private:
 		std::string generateHttpResponceFromRequst(HttpStatus status, json::JsonObject json, const HttpHeaders headers)const;

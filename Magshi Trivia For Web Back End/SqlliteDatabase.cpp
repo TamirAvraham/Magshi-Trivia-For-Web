@@ -13,11 +13,13 @@ SqlliteDatabase::SqlliteDatabase()
         std::cerr << "Error open DB " << sqlite3_errmsg(_db) << std::endl;
         throw UserException(sqlite3_errmsg(_db));
     }
-    std::string sql = "CREATE TABLE USER("
-        "ID INT PRIMARY KEY     NOT NULL, "
-        "USERNAME           TEXT    NOT NULL, "
-        "PASSWORD          TEXT     NOT NULL, "
-        "EMAIL            TEXT     NOT NULL);";
+    std::string sql = R"(CREATE TABLE IF NOT EXISTS users (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    USERNAME TEXT NOT NULL,
+    PASSWORD TEXT NOT NULL,
+    EMAIL TEXT NOT NULL
+);
+)";
     char* messaggeError;
     exit = sqlite3_exec(_db, sql.c_str(), NULL, 0, &messaggeError);
 

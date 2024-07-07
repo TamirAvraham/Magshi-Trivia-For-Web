@@ -21,7 +21,6 @@ namespace http {
 		inline HttpRouteParam(std::string name, std::string value):_paramName(name),_paramValue(value) {}
 	};
 
-
 	
 
 	struct HttpRoute;
@@ -34,6 +33,8 @@ namespace http {
 		void HandleRoute(http::HttpRequestType,HttpRoute);
 		void ServeHtmlPage(const std::string& routeName, HtmlFileReader& htmlFileReader);
 		void ServeHtmlPage(const std::string&& routeName, HtmlFileReader& htmlFileReader);
+		void enableCORSMiddleware(const std::vector<std::string>& premissions);
+		void enableCORSMiddleware();
 
 
 		class HttpContext {
@@ -46,7 +47,7 @@ namespace http {
 			json::JsonObject GetBodyAsJson()const noexcept;
 			
 			void sendJson(http::HttpStatus status, http::json::JsonObject& jsonObject, http::HttpHeaders headers=http::HttpHeaders()) noexcept;
-			
+			void sendEmpty(http::HttpStatus status, const http::HttpHeaders& headres)noexcept;
 			void sendHtml(http::HttpStatus status, http::FileReader& htmlfile, http::HttpHeaders headers=http::HttpHeaders()) noexcept;
 			void addCookie(std::string&& cookieValue, std::string&& key) noexcept;
 			void addCookie(std::string&& key,const std::string& cookieValue) noexcept;
@@ -75,6 +76,8 @@ namespace http {
 		std::pair<http::HttpServer::HttpContext, std::function<void(http::HttpServer::HttpContext&)>> getContextFromReq(std::string req, SOCKET sock);
 		std::pair<bool,std::vector<HttpRouteParam>> getParamsFromRoute(std::string route, std::string templateRoute)const;
 		std::pair<std::vector<HttpRouteParam>,std::function<void(HttpServer::HttpContext&)>> matchRoute(std::string gotRoute, http::HttpRequestType reqType);
+		bool _corsEnabled;
+		std::vector<std::string> _corsValues;
 		
 		/*std::vector<http::HttpRouteParam> getRouteParams(std::string route,std::string parttern)const;*/
 		std::map<HttpRequestType,std::vector<HttpRoute>> _routes;
@@ -100,6 +103,9 @@ namespace http {
 		std::function<void(HttpServer::HttpContext&)> _handler;
 	};
 	using HttpContext = HttpServer::HttpContext;
+	void handleCors(HttpContext& ctx);
+
+
 }
 
 
