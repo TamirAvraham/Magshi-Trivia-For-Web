@@ -51,8 +51,9 @@ namespace http {
 			void sendHtml(http::HttpStatus status, http::FileReader& htmlfile, http::HttpHeaders headers=http::HttpHeaders()) noexcept;
 			void addCookie(std::string&& cookieValue, std::string&& key) noexcept;
 			void addCookie(std::string&& key,const std::string& cookieValue) noexcept;
-			
-			// alloc aysnc task
+			const std::string& getCookieValue(std::string&& key) const;
+			const std::string& getCookieValue(const std::string& key) const;
+
 
 			/// <summary>
 			/// alloc task to thread pool

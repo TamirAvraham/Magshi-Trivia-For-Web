@@ -14,8 +14,7 @@ void signupRoute(http::HttpContext& ctx)
 		http::json::JsonObject responce;
 
 		responce.insert("id", user.getId());
-		auto idAsString = std::to_string(user.getId());
-		ctx.addCookie("user-id", idAsString);
+		addUserCookieIdToContext(user, ctx);
 		ctx.sendJson(http::HttpStatus::OK, responce);
 	}
 	catch (const std::exception& e)
@@ -37,11 +36,10 @@ void loginRoute(http::HttpContext& ctx)
 		const auto& password = body["password"].string_value();
 
 		auto user = IDatabase::getInstance()->login(username, password);
-		http::json::JsonObject responce;
 
+		http::json::JsonObject responce;
 		responce.insert("id", user.getId());
-		auto idAsString = std::to_string(user.getId());
-		ctx.addCookie("user-id", idAsString);
+		addUserCookieIdToContext(user, ctx);
 		ctx.sendJson(http::HttpStatus::OK, responce);
 	}
 	catch (const std::exception& e)
@@ -50,4 +48,10 @@ void loginRoute(http::HttpContext& ctx)
 		json.insert("error", e.what());
 		ctx.sendJson(http::HttpStatus::BadRequest, json);
 	}
+}
+
+void addUserCookieIdToContext(const User& user, http::HttpContext& ctx)
+{
+	auto idAsString = std::to_string(user.getId());
+	ctx.addCookie(USER_ID_COOKIE_NAME, idAsString);
 }

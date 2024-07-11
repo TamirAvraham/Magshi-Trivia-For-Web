@@ -302,6 +302,18 @@ void http::HttpServer::HttpContext::addCookie(std::string&& key, const std::stri
     _newCookies.emplace(key, cookieValue);
 }
 
+const std::string& http::HttpServer::HttpContext::getCookieValue(std::string&& key) const 
+{
+    const auto& cookie = _cookies.find(key);
+    return cookie->second;
+}
+
+const std::string& http::HttpServer::HttpContext::getCookieValue(const std::string& key) const
+{
+    const auto& cookie = _cookies.find(key);
+    return cookie->second;
+}
+
 
 http::HttpRoute::HttpRoute(std::string routeTemplate, std::function<void(HttpServer::HttpContext&)> handler):_route(routeTemplate),_handler(handler)
 {
