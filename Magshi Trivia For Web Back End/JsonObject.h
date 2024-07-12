@@ -17,6 +17,8 @@ namespace http {
 			JsonValue operator[](const std::string& name)const;
 			void insert(JsonKeyValuePair keyValuePair);
 			void insert(std::string&& key, std::string&& jsonValueAsString);
+			void insert(std::string&& key,const std::string& jsonValueAsString);
+
 			void insert(std::string&& key, int numberValue);
 			void set(const std::string& keyName,http::json::JsonValue val) noexcept;
 			std::string ToString();

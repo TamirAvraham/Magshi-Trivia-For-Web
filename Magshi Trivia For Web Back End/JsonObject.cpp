@@ -64,6 +64,11 @@ void http::json::JsonObject::insert(std::string&& key, std::string&& jsonValueAs
 	return insert({ {key},{jsonValue} });
 }
 
+void http::json::JsonObject::insert(std::string&& key, const std::string& jsonValueAsString)
+{
+	return insert({ {key},{jsonValueAsString} });
+}
+
 void http::json::JsonObject::insert(std::string&& key, int numberValue)
 {
 	auto numberValueAsString = std::to_string(numberValue);

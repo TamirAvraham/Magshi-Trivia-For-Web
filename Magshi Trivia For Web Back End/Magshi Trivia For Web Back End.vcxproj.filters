@@ -58,6 +58,9 @@
     <Filter Include="Header Files\Helper">
       <UniqueIdentifier>{4b693752-72b1-400c-8f42-afbec1ff5e65}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Rooms">
+      <UniqueIdentifier>{be1ee5fe-02e4-4aae-8a40-f555f5e0ca23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlockingQueue.h">
@@ -138,14 +141,17 @@
     <ClInclude Include="helper.hpp">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
-    <ClInclude Include="Room.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RoomManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Macros.h">
       <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomManager.h">
+      <Filter>Header Files\Rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>Header Files\Rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomsRoutes.h">
+      <Filter>Header Files\Rooms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +231,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RoomManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomsRoutes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -15,5 +15,10 @@ void RoomManager::joinRoom(int userId, int roomId)
 
 const RoomData& RoomManager::getRoomData(int roomId)
 {
-	_rooms.at(roomId).getRoomData();
+	return _rooms.at(roomId).getRoomData();
+}
+
+const std::map<int,Room>& RoomManager::getRooms() const
+{
+	return _rooms;
 }

@@ -35,3 +35,14 @@ const std::vector<int>& Room::getUsers() const
 {
 	return _users;
 }
+
+http::json::JsonObject RoomDataMethods::seralizeRoomDataAsJson(const RoomData& roomData)
+{
+	http::json::JsonObject ret;
+	ret.insert("name", roomData.name);
+	ret.insert("adminId", roomData.adminId);
+	ret.insert("isActive", roomData.isActive ? "true" : "false");
+	ret.insert("timeToAnswer", roomData.timeToAnswer);
+	ret.insert("numberOfQuestions", roomData.numberOfQuestions);
+	return ret;
+}

@@ -1,13 +1,17 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "JsonObject.h"
 struct RoomData {
+	std::string name;
 	int numberOfQuestions;
 	int timeToAnswer;
 	int adminId;
 	bool isActive;
-	std::string name;
 };
+namespace RoomDataMethods {
+	http::json::JsonObject seralizeRoomDataAsJson(const RoomData& roomData);
+}
 class Room
 {
 private:

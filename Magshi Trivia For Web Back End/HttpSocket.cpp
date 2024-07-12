@@ -29,20 +29,20 @@ std::string http::HttpSocket::generateHttpResponceFromRequst(HttpStatus status, 
     ret += GetStatusLine(status);
     for(const auto& [headerName ,headerValue] : headers.headers)
     {
-        ret += '\n';
+        ret += "\r\n";
         ret += headerName;
         ret += ": ";
         ret += headerValue;
     }
     std::cout << ret;
     if (ret.find("Content-Type")==std::string::npos)
-        ret += "\nContent-Type: application/json";
+        ret += "\r\nContent-Type: application/json";
     if (ret.find("Content-Length") == std::string::npos) {
-        ret += "\nContent-Length: ";
+        ret += "\r\nContent-Length: ";
         int length = jsonAsString.length();
         ret += std::to_string(length);
     }
-    ret += "\n\n";
+    ret += "\r\n\r\n";
     ret += jsonAsString;
     return ret;
 }

@@ -22,9 +22,5 @@ const User& UserManager::getUserById(int id) const
         throw std::runtime_error("User Not Found");
     }
 }
-UserManager UserManager::_instance;
-UserManager UserManager::getInstance()
-{
-    return _instance;
-}
+
 

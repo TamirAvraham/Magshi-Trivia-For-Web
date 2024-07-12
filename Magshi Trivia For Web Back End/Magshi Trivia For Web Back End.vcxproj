@@ -147,6 +147,7 @@
     <ClInclude Include="Macros.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="RoomManager.h" />
+    <ClInclude Include="RoomsRoutes.h" />
     <ClInclude Include="sqlite3.h" />
     <ClInclude Include="sqlite3ext.h" />
     <ClInclude Include="SqlliteDatabase.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="RoomManager.cpp" />
+    <ClCompile Include="RoomsRoutes.cpp" />
     <ClCompile Include="shell.c" />
     <ClCompile Include="sqlite3.c" />
     <ClCompile Include="SqlliteDatabase.cpp" />
