@@ -23,4 +23,19 @@ const User& UserManager::getUserById(int id) const
     }
 }
 
+void UserManager::advanceToAuth(int userId)
+{
+    _users.at(userId).advanceToAuth();
+}
+
+void UserManager::joinRoom(int userId, int roomId)
+{
+    _users.at(userId).joinRoom(roomId);
+}
+
+void UserManager::createGame(int userId, int roomId)
+{
+    _users.at(userId).createGame(roomId);
+}
+
 

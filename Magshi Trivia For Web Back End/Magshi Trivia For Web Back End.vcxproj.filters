@@ -61,6 +61,9 @@
     <Filter Include="Header Files\Rooms">
       <UniqueIdentifier>{be1ee5fe-02e4-4aae-8a40-f555f5e0ca23}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rooms">
+      <UniqueIdentifier>{00c88073-34a8-4efa-b2e3-8372d2dae368}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlockingQueue.h">
@@ -227,14 +230,14 @@
     <ClCompile Include="SqlliteDatabase.cpp">
       <Filter>Source Files\Database</Filter>
     </ClCompile>
-    <ClCompile Include="Room.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="RoomsRoutes.cpp">
+      <Filter>Source Files\Rooms</Filter>
     </ClCompile>
     <ClCompile Include="RoomManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Rooms</Filter>
     </ClCompile>
-    <ClCompile Include="RoomsRoutes.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Room.cpp">
+      <Filter>Source Files\Rooms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

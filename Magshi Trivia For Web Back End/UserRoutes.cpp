@@ -54,4 +54,5 @@ void addUserCookieIdToContext(const User& user, http::HttpContext& ctx)
 {
 	auto idAsString = std::to_string(user.getId());
 	ctx.addCookie(USER_ID_COOKIE_NAME, idAsString);
+	UserManager::getInstance().advanceToAuth(user.getId());
 }

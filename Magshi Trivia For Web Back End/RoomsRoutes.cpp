@@ -1,5 +1,17 @@
 #include "RoomsRoutes.h"
 #include "helper.hpp"
+void getRoom(http::HttpContext& ctx)
+{
+	try
+	{
+		auto body = ctx.GetBodyAsJson();
+		auto roomId = body["roomId"].integer_value();
+	}
+	catch (const std::exception& e)
+	{
+		sendErrorJsonWithException(e, ctx);
+	}
+}
 void createRoomRoute(http::HttpContext& ctx)
 {
 	try
@@ -39,6 +51,22 @@ void getRoomsRoute(http::HttpContext& ctx)
 		json.insert({ {"rooms"},{roomsJsonArray} });
 
 		ctx.sendJson(http::HttpStatus::OK, json);
+	}
+	catch (const std::exception& e)
+	{
+		sendErrorJsonWithException(e, ctx);
+	}
+}
+
+void joinRoomRoute(http::HttpContext& ctx)
+{
+	try
+	{
+		auto body = ctx.GetBodyAsJson();
+		const auto& user = getUserFromContext(ctx);
+		auto roomId = body["roomId"].integer_value();
+		RoomManager::getInstance().joinRoom(user.getId(),roomId);
+		UserManager::getInstance().joinRoom(user.getId(), roomId);
 	}
 	catch (const std::exception& e)
 	{

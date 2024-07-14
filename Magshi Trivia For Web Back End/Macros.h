@@ -12,3 +12,5 @@ private:                                     \
     ClassName& operator=(const ClassName&) = delete; \
     ClassName(ClassName&&) = delete;         \
     ClassName& operator=(ClassName&&) = delete;
+
+#define CREATE_HTTP_ROUTE(functionName) void functionName##(http::HttpContext& ctx);

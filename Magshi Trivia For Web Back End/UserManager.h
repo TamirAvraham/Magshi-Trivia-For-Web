@@ -9,11 +9,14 @@ class UserManager
 public:
 	const User& login(const std::string & username);
 	const User& getUserById(int id)const;
+	void advanceToAuth(int userId);
+	void joinRoom(int userId,int roomId);
+	void createGame(int userId,int roomId);
 private:
 	std::map<int, User> _users{};
 	int _id=0;
 
-
+	
 
 public: 
 static UserManager& getInstance() {
